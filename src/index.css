@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme inline {
+    --color-background: #000000;
+    --color-foreground: #CACACA;
+    --color-primary: #45d9a3;
+    --color-muted: #8F8F8F;
+    --color-border: #131313;
+    --color-border-light: #1A1A1A;
+    --color-card: #0A0A0A;
+
+    --font-sans: "Lato", sans-serif;
+    --font-display: "Lato", sans-serif;
+
+    /* Spacing: section vertical padding, responsive */
+    --spacing-section: 80px;
+}
+
+@media (min-width: 768px) {
+    :root {
+        --spacing-section: 120px;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --spacing-section: 160px;
+    }
+}
+
+html,
+body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* Lenis scrolling recommended styles */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+    pointer-events: none;
+}
+
+.lato-thin {
+    font-family: "Lato", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.lato-light {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.lato-regular {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.lato-bold {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.lato-black {
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.lato-thin-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.lato-light-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.lato-regular-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.lato-bold-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.lato-black-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+/* Portfolio cards: green tint + grain overlay */
+.works-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' result='noise'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' fill='%23fff'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    mix-blend-mode: overlay;
+}
+
+/* Contact form: dark ash lines from the right (and bottom) */
+.contact-input {
+    border: none;
+    border-right: 1px solid #2a2a2a;
+    border-bottom: 1px solid #2a2a2a;
+}
+.contact-input:focus {
+    border-right-color: var(--color-border-light);
+    border-bottom-color: var(--color-border-light);
+}

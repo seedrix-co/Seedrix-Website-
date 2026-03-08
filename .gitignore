@@ -19,10 +19,14 @@
 
 # production
 /build
+/dist
+godaddy-deploy.zip
 
 # misc
 .DS_Store
 *.pem
+tmp-cache/
+page_output.html
 
 # debug
 npm-debug.log*
