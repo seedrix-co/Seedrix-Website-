@@ -70,6 +70,7 @@ export default function Footer() {
                     <div className="flex flex-wrap items-center justify-center gap-6">
                         <Link to="/about" className="hover:text-foreground transition-colors">About</Link>
                         <Link to="/#work" className="hover:text-foreground transition-colors">Work</Link>
+                        <Link to="/#previous-work" className="hover:text-foreground transition-colors">Previous Work</Link>
                         <Link to="/contact" className="hover:text-foreground transition-colors">Contact</Link>
                     </div>
                 </div>

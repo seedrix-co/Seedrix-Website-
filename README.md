@@ -34,3 +34,20 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Email on Vercel
+
+Contact and CTA forms send inquiries via the `/api/send-inquiry` serverless function using [Resend](https://resend.com).
+
+**Required:** In the Vercel project, set:
+
+- **`RESEND_API_KEY`** – Your Resend API key (create at [resend.com](https://resend.com)).
+
+**Optional:**
+
+- **`INQUIRY_RECIPIENT_EMAIL`** – Where to send inquiries (default: `info@seedrix.co`).
+- **`RESEND_FROM_EMAIL`** – Sender address, e.g. `"Website <noreply@yourdomain.com>"`. Default: `"Website <onboarding@resend.dev>"` (Resend's test sender).
+
+Add these under **Project → Settings → Environment Variables** in the Vercel dashboard, then redeploy.
+
+For local testing with the API, run `npx vercel dev` so both the app and the serverless function run; `npm run dev` only serves the frontend.

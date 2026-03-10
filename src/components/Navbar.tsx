@@ -4,6 +4,7 @@ const menuItems = [
   { label: "Home", ariaLabel: "Go to home page", link: "/" },
   { label: "About", ariaLabel: "Learn about us", link: "/about" },
   { label: "Works", ariaLabel: "View our works", link: "/#work" },
+  { label: "Previous Work", ariaLabel: "View previous work", link: "/#previous-work" },
   { label: "Contact", ariaLabel: "Get in touch", link: "/contact" },
 ];
 
