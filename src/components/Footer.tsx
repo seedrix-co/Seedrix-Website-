@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
 const socials = [
-    { label: "Facebook", href: "https://www.facebook.com/seedrix" },
-    { label: "Instagram", href: "https://www.instagram.com/seedrix" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/company/seedrix" },
+    { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61587673930097" },
+    { label: "Instagram", href: "https://www.instagram.com/seedrix.co/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/seedrix-co/posts/?feedView=all" },
     { label: "Twitter", href: "https://twitter.com/seedrix" },
 ];
 

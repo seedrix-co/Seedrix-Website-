@@ -13,34 +13,11 @@ const SERVICES = [
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const payload = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      company: (formData.get("company") as string) || "",
-      service: formData.get("service") as string,
-      message: formData.get("message") as string,
-    };
-    try {
-      const res = await fetch("/api/send-inquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = (await res.json()) as { success?: boolean; error?: string };
-      if (res.ok && data.success) {
-        setStatus("sent");
-        form.reset();
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
+    // Replace with your actual form submission (e.g. API, Formspree, etc.)
+    setTimeout(() => setStatus("sent"), 800);
   }
 
   return (

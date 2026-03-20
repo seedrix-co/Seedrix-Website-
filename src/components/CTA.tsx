@@ -26,27 +26,42 @@ export default function CTA() {
         setStatus("sending");
         const form = e.currentTarget;
         const formData = new FormData(form);
-        const payload = {
-            name: formData.get("name") as string,
-            email: formData.get("email") as string,
-            company: (formData.get("company") as string) || "",
-            service: formData.get("service") as string,
-            message: formData.get("message") as string,
-        };
+        // #region agent log
+        const formKeys = Array.from(formData.keys());
+        fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:handleSubmit',message:'form submit start',data:{formKeyCount:formKeys.length,formKeys},hypothesisId:'B',timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
         try {
-            const res = await fetch("/api/send-inquiry", {
+            const res = await fetch("/send-inquiry.php", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
+                body: formData,
             });
-            const data = (await res.json()) as { success?: boolean; error?: string };
+            // #region agent log
+            fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:after fetch',message:'fetch result',data:{status:res.status,ok:res.ok,contentType:res.headers.get('content-type')},hypothesisId:'A',timestamp:Date.now()})}).catch(()=>{});
+            // #endregion
+            let data: { success?: boolean; error?: string } = {};
+            try {
+                data = await res.json();
+            } catch (_) {
+                // #region agent log
+                fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:json parse',message:'response not valid JSON',data:{status:res.status},hypothesisId:'C',timestamp:Date.now()})}).catch(()=>{});
+                // #endregion
+            }
+            // #region agent log
+            fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:parsed data',message:'response data',data:{success:data.success,error:data.error},hypothesisId:'C',timestamp:Date.now()})}).catch(()=>{});
+            // #endregion
             if (res.ok && data.success) {
                 setStatus("sent");
                 form.reset();
+                // #region agent log
+                fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:success path',message:'set sent and reset form',data:{},hypothesisId:'E',timestamp:Date.now()})}).catch(()=>{});
+                // #endregion
             } else {
                 setStatus("error");
             }
-        } catch {
+        } catch (err) {
+            // #region agent log
+            fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:catch',message:'fetch or parse threw',data:{errName:err instanceof Error ? err.name : '',errMessage:err instanceof Error ? err.message : String(err)},hypothesisId:'D',timestamp:Date.now()})}).catch(()=>{});
+            // #endregion
             setStatus("error");
         }
     }

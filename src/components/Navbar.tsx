@@ -9,9 +9,9 @@ const menuItems = [
 ];
 
 const socialItems = [
-  { label: "Facebook", link: "https://www.facebook.com/seedrix" },
-  { label: "Instagram", link: "https://www.instagram.com/seedrix" },
-  { label: "LinkedIn", link: "https://www.linkedin.com/company/seedrix" },
+  { label: "Facebook", link: "https://www.facebook.com/profile.php?id=61587673930097" },
+  { label: "Instagram", link: "https://www.instagram.com/seedrix.co/" },
+  { label: "LinkedIn", link: "https://www.linkedin.com/company/seedrix-co/posts/?feedView=all" },
   { label: "Twitter", link: "https://twitter.com/seedrix" },
 ];
 
