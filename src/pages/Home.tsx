@@ -7,17 +7,16 @@ import LogoLoop from "@/components/LogoLoop";
 import Testimonial from "@/components/Testimonial";
 import Services from "@/components/Services";
 import Process from "@/components/Process";
-import PreviousWork from "@/components/PreviousWork";
 import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 
 export default function Home() {
   const location = useLocation();
 
-  // When nav "Works" or "Previous Work" is clicked, scroll to the section. Run after paint so layout is ready.
+  // When nav "Works" is clicked, scroll to the section. Run after paint so layout is ready.
   useEffect(() => {
     const hash = location.hash;
-    if (hash !== "#work" && hash !== "#previous-work") return;
+    if (hash !== "#work") return;
     const id = hash.slice(1);
     const el = document.getElementById(id);
     if (!el) return;
@@ -38,7 +37,6 @@ export default function Home() {
       <Services />
       <LogoLoop />
       <Process />
-      <PreviousWork />
       <FAQ />
       <CTA />
     </main>
