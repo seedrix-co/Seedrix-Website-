@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "@getbrevo/brevo": "^2.2.0",
     "express": "^4.19.2"
   }
 }

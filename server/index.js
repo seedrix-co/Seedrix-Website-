@@ -1,12 +1,7 @@
 const express = require('express');
-const Brevo = require('@getbrevo/brevo');
 
 const app = express();
 app.use(express.json());
-
-// Brevo transactional email client
-Brevo.ApiClient.instance.authentications['api-key'].apiKey = process.env.BREVO_API_KEY;
-const apiInstance = new Brevo.TransactionalEmailsApi();
 
 app.post('/send-inquiry', async (req, res) => {
   const { name, email, company, service, message } = req.body;
@@ -20,12 +15,7 @@ app.post('/send-inquiry', async (req, res) => {
     return res.status(400).json({ success: false, error: 'Invalid email address' });
   }
 
-  const mail = new Brevo.SendSmtpEmail();
-  mail.sender = { name: 'Seedrix Website', email: 'info@seedrix.co' };
-  mail.to = [{ email: 'info@seedrix.co', name: 'Seedrix' }];
-  mail.replyTo = { email, name };
-  mail.subject = `Website inquiry from ${name}`;
-  mail.textContent = [
+  const textContent = [
     'New inquiry from the website',
     '',
     `Name:     ${name}`,
@@ -38,10 +28,31 @@ app.post('/send-inquiry', async (req, res) => {
   ].join('\n');
 
   try {
-    await apiInstance.sendTransacEmail(mail);
+    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'api-key': process.env.BREVO_API_KEY,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        sender: { name: 'Seedrix Website', email: 'info@seedrix.co' },
+        to: [{ email: 'info@seedrix.co', name: 'Seedrix' }],
+        replyTo: { email, name },
+        subject: `Website inquiry from ${name}`,
+        textContent,
+      }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      console.error('Brevo error:', error);
+      return res.status(500).json({ success: false, error: 'Failed to send email' });
+    }
+
     res.json({ success: true });
   } catch (err) {
-    console.error('Brevo error:', err?.response?.body ?? err);
+    console.error('Brevo error:', err);
     res.status(500).json({ success: false, error: 'Failed to send email' });
   }
 });
