@@ -5,8 +5,8 @@ const app = express();
 app.use(express.json());
 
 // Brevo transactional email client
+Brevo.ApiClient.instance.authentications['api-key'].apiKey = process.env.BREVO_API_KEY;
 const apiInstance = new Brevo.TransactionalEmailsApi();
-apiInstance.authentications['api-key'].apiKey = process.env.BREVO_API_KEY;
 
 app.post('/send-inquiry', async (req, res) => {
   const { name, email, company, service, message } = req.body;
