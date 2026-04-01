@@ -12,17 +12,17 @@ export default function Footer() {
         <footer className="bg-background py-12 border-t border-border/50">
             <div className="container mx-auto px-6 max-w-[1400px]">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-                    {/* Brand & tagline — centered on mobile, left on md+ */}
+                    {/* Brand & tagline, centered on mobile, left on md+ */}
                     <div className="flex flex-col space-y-4 items-center text-center md:items-start md:text-left">
                         <Link to="/" className="flex items-center w-fit">
                             <img src="/Logo.png" alt="Logo" className="h-10 w-auto object-contain" />
                         </Link>
                         <p className="text-muted text-sm max-w-sm">
-                            Digital transformation, software engineering, automation, and growth systems — built for scale.
+                            Digital transformation, software engineering, automation, and growth systems, built for scale.
                         </p>
                     </div>
 
-                    {/* Contact & Socials — centered on mobile, left on sm+ */}
+                    {/* Contact & Socials, centered on mobile, left on sm+ */}
                     <div className="flex flex-col sm:flex-row items-center text-center sm:items-start sm:text-left gap-10 sm:gap-16">
                         <div>
                             <h4 className="text-xs font-bold uppercase tracking-widest text-muted mb-3">Contact</h4>
@@ -69,7 +69,7 @@ export default function Footer() {
                     <p>&copy; {new Date().getFullYear()} SEEDRIX. All rights reserved.</p>
                     <div className="flex flex-wrap items-center justify-center gap-6">
                         <Link to="/about" className="hover:text-foreground transition-colors">About</Link>
-                        <Link to="/#work" className="hover:text-foreground transition-colors">Work</Link>
+                        <Link to="/works" className="hover:text-foreground transition-colors">Work</Link>
                         <Link to="/contact" className="hover:text-foreground transition-colors">Contact</Link>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Contact form handler — sends inquiry to info@seedrix.co
+ * Contact form handler; sends inquiry to info@seedrix.co
  * Place this file in the same directory as index.html (e.g. public_html) on your server.
  */
 
@@ -51,7 +51,8 @@ $body .= "Message:\n" . $message . "\n";
 $headers = [];
 $headers[] = 'MIME-Version: 1.0';
 $headers[] = 'Content-Type: text/plain; charset=UTF-8';
-$headers[] = 'From: ' . $email;
+// Use site address as From so hosting SPF/DMARC accepts the message; visitor stays on Reply-To.
+$headers[] = 'From: Seedrix Website <info@seedrix.co>';
 $headers[] = 'Reply-To: ' . $email;
 $headers[] = 'X-Mailer: PHP/' . phpversion();
 

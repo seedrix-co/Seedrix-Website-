@@ -12,8 +12,11 @@ const TAGLINE =
     "An integrated partner for business systems, technology, and brand growth.";
 const TAGLINE_WORDS = TAGLINE.split(" ");
 
-/** Scroll height for pin: enough to reveal all three images one by one */
-const PIN_SCROLL_HEIGHT = "280vh";
+/**
+ * Tall scroll track so each image + label gets a long, slow scrub (desktop + mobile).
+ * Larger value = slower progress through the same animation keyframes.
+ */
+const PIN_SCROLL_CLASS = "h-[380vh] md:h-[560vh]";
 
 export default function Introduction() {
     const pinRef = useRef<HTMLDivElement>(null);
@@ -23,16 +26,17 @@ export default function Introduction() {
         offset: ["start start", "end end"],
     });
 
-    // Labels appear first, then each image fades in (label fades out as image fades in)
-    const label1 = useTransform(scrollYProgress, [0, 0.1, 0.28], [0, 1, 0]);
-    const label2 = useTransform(scrollYProgress, [0.28, 0.38, 0.56], [0, 1, 0]);
-    const label3 = useTransform(scrollYProgress, [0.56, 0.66, 0.92], [0, 1, 0]);
-    const labelOpacities = [label1, label2, label3];
-
-    const image1 = useTransform(scrollYProgress, [0.18, 0.32], [0, 1]);
-    const image2 = useTransform(scrollYProgress, [0.44, 0.6], [0, 1]);
-    const image3 = useTransform(scrollYProgress, [0.72, 0.92], [0, 1]);
+    // Each column: image first, then label; keyed to ~⅓ of scroll each (one image per “chapter”)
+    const image1 = useTransform(scrollYProgress, [0.04, 0.16], [0, 1]);
+    const image2 = useTransform(scrollYProgress, [0.36, 0.48], [0, 1]);
+    const image3 = useTransform(scrollYProgress, [0.66, 0.8], [0, 1]);
     const imageOpacities = [image1, image2, image3];
+
+    // Labels fade in, then stay visible (do not fade out when the image appears)
+    const label1 = useTransform(scrollYProgress, [0.14, 0.3, 1], [0, 1, 1]);
+    const label2 = useTransform(scrollYProgress, [0.44, 0.6, 1], [0, 1, 1]);
+    const label3 = useTransform(scrollYProgress, [0.74, 0.94, 1], [0, 1, 1]);
+    const labelOpacities = [label1, label2, label3];
 
     return (
         <section className="py-[var(--spacing-section)]">
@@ -58,11 +62,8 @@ export default function Introduction() {
                 </motion.div>
             </div>
 
-            {/* Pinned scroll area: on mobile shorter so 3 images fit in viewport; desktop full scroll */}
-            <div
-                ref={pinRef}
-                className="relative w-full h-[120vh] md:h-[280vh]"
-            >
+            {/* Pinned scroll area; tall track so scroll feels smooth and slow (same rhythm on mobile + desktop) */}
+            <div ref={pinRef} className={`relative w-full ${PIN_SCROLL_CLASS}`}>
                 <div className="sticky top-0 left-0 w-full pt-6 md:pt-12">
                     {/* Mobile: vertical stack, fixed heights so all 3 fit on screen; Desktop: horizontal row */}
                     <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-6 md:mt-12 flex flex-col md:flex-row gap-[2px]">
@@ -72,15 +73,27 @@ export default function Introduction() {
                                 className="w-full h-[30vh] min-h-[140px] md:h-auto md:min-h-0 md:flex-1 md:min-w-0 relative md:aspect-[4/3] overflow-hidden bg-background"
                             >
                                 <motion.div
-                                    className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none"
+                                    className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none px-4"
                                     style={{ opacity: labelOpacities[index] }}
                                 >
-                                    <span className="text-3xl md:text-4xl lg:text-5xl font-sans uppercase tracking-tight text-foreground">
+                                    {/* Full-bleed matte: gradients cover the entire image (vertical + horizontal + radial) */}
+                                    <div
+                                        className="absolute inset-0"
+                                        style={{
+                                            background: `
+                                                radial-gradient(ellipse 120% 100% at 50% 50%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.38) 52%, rgba(0,0,0,0.78) 100%),
+                                                linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.06) 42%, rgba(0,0,0,0.1) 58%, rgba(0,0,0,0.58) 100%),
+                                                linear-gradient(90deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.04) 28%, rgba(0,0,0,0.04) 72%, rgba(0,0,0,0.38) 100%)
+                                            `,
+                                        }}
+                                        aria-hidden
+                                    />
+                                    <span className="relative z-[1] text-center text-3xl md:text-4xl lg:text-5xl font-sans font-medium uppercase tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.9)]">
                                         {img.label}
                                     </span>
                                 </motion.div>
                                 <motion.div
-                                    className="absolute inset-0"
+                                    className="absolute inset-0 z-0"
                                     style={{ opacity: imageOpacities[index] }}
                                 >
                                     <img

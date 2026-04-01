@@ -44,7 +44,7 @@ export default function About() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      {/* Hero — dark background, no LaserFlow (home only) */}
+      {/* Hero: dark background, no LaserFlow (home only) */}
       <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-[var(--spacing-section)] overflow-hidden bg-black">
         <div className="container mx-auto px-6 max-w-[1400px] z-10 relative">
           <motion.div
@@ -92,7 +92,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Our Story — Services-style header + body */}
+      {/* Our Story: Services-style header + body */}
       <section className="py-[var(--spacing-section)] bg-background">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 lg:mb-20 gap-6">
@@ -145,7 +145,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Vision & Mission — Process/FAQ-style big title + cards */}
+      {/* Vision & Mission: Process/FAQ-style big title + cards */}
       <section className="py-[var(--spacing-section)] bg-card border-y border-border/50">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <motion.div
@@ -208,7 +208,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Our Values — Process-style steps with parallax */}
+      {/* Our Values: Process-style steps with parallax */}
       <section
         ref={processRef}
         className="py-[var(--spacing-section)] bg-background"
@@ -265,7 +265,7 @@ export default function About() {
               variants={fadeUpVariant}
               className="text-muted text-lg md:text-xl max-w-xl font-light leading-relaxed"
             >
-              Strategy, technology, and execution — built for structure and
+              Strategy, technology, and execution, built for structure and
               scale.
             </motion.p>
           </div>
@@ -304,7 +304,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Location — CTA-style strip */}
+      {/* Location: CTA-style strip */}
       <section className="relative py-[var(--spacing-section)] overflow-hidden bg-black text-white">
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-background to-black/90" />
         <div className="container mx-auto px-6 max-w-[1400px] relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-8">

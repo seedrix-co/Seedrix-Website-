@@ -5,6 +5,7 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Waitlist from "@/pages/Waitlist";
 import Works from "@/pages/Works";
+import ProjectCaseStudy from "@/pages/ProjectCaseStudy";
 import Asan from "@/pages/Asan";
 import Sanji from "@/pages/Sanji";
 import NotFound from "@/pages/NotFound";
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="sanji/" element={<Sanji />} />
           <Route path="waitlist" element={<Waitlist />} />
           <Route path="works" element={<Works />} />
+          <Route path="work/:slug" element={<ProjectCaseStudy />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -41,6 +41,19 @@ body {
     color: white;
 }
 
+/* Inter / SF-style stack for premium case study cards */
+.case-studies-font {
+    font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Text",
+        "Segoe UI",
+        sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
 /* Lenis scrolling recommended styles */
 html.lenis,
 html.lenis body {
@@ -139,4 +152,79 @@ html.lenis body {
 .contact-input:focus {
     border-right-color: var(--color-border-light);
     border-bottom-color: var(--color-border-light);
+}
+
+/* Work showcase, floating tiles (Personal Branding) */
+@keyframes work-float-y {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) rotate(var(--work-tile-rotate, 0deg));
+    }
+    50% {
+        transform: translate3d(0, -10px, 0) rotate(var(--work-tile-rotate, 0deg));
+    }
+}
+
+@keyframes work-float-x {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) rotate(var(--work-tile-rotate, 0deg));
+    }
+    50% {
+        transform: translate3d(8px, -4px, 0) rotate(var(--work-tile-rotate, 0deg));
+    }
+}
+
+@keyframes work-float-y-slow {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) rotate(var(--work-tile-rotate, 0deg));
+    }
+    50% {
+        transform: translate3d(0, -6px, 0) rotate(var(--work-tile-rotate, 0deg));
+    }
+}
+
+.work-float-y {
+    animation: work-float-y var(--work-float-dur, 5s) ease-in-out infinite;
+    animation-delay: var(--work-float-delay, 0s);
+}
+
+.work-float-x {
+    animation: work-float-x var(--work-float-dur, 6s) ease-in-out infinite;
+    animation-delay: var(--work-float-delay, 0s);
+}
+
+.work-float-y-slow {
+    animation: work-float-y-slow var(--work-float-dur, 7s) ease-in-out infinite;
+    animation-delay: var(--work-float-delay, 0s);
+}
+
+@keyframes pb-glow-breathe {
+    0%,
+    100% {
+        opacity: 0.35;
+    }
+    50% {
+        opacity: 0.72;
+    }
+}
+
+.work-pb-glow {
+    animation: pb-glow-breathe var(--work-float-dur, 5s) ease-in-out infinite;
+    animation-delay: var(--work-float-delay, 0s);
+}
+
+@keyframes cs-dot-progress {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.cs-dot-progress-fill {
+    transform-origin: left center;
+    animation: cs-dot-progress var(--cs-dot-duration, 5.2s) linear forwards;
 }

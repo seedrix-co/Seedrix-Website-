@@ -13,11 +13,31 @@ const SERVICES = [
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
-    // Replace with your actual form submission (e.g. API, Formspree, etc.)
-    setTimeout(() => setStatus("sent"), 800);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    try {
+      const res = await fetch("/send-inquiry.php", {
+        method: "POST",
+        body: formData,
+      });
+      let data: { success?: boolean; error?: string } = {};
+      try {
+        data = await res.json();
+      } catch {
+        /* non-JSON response */
+      }
+      if (res.ok && data.success) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (

@@ -3,7 +3,7 @@ import StaggeredMenu from "@/components/StaggeredMenu";
 const menuItems = [
   { label: "Home", ariaLabel: "Go to home page", link: "/" },
   { label: "About", ariaLabel: "Learn about us", link: "/about" },
-  { label: "Works", ariaLabel: "View our works", link: "/#work" },
+  { label: "Work", ariaLabel: "View our work", link: "/works" },
   { label: "Contact", ariaLabel: "Get in touch", link: "/contact" },
 ];
 

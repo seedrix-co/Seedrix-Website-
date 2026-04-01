@@ -1,17 +1,9 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-/** First image per portfolio folder (public/portfolio); order = carousel order */
-const PORTFOLIOS = [
-    { title: "SJ Shoe", img: "/portfolio/sjshoe/sj1.png", link: "#" },
-    { title: "Vacation Vibez", img: "/portfolio/vv/vv1.png", link: "#" },
-    { title: "WWC", img: "/portfolio/wwc/wwc1.png", link: "#" },
-    { title: "WH", img: "/portfolio/wh/wh1.png", link: "#" },
-    { title: "Track Junction", img: "/portfolio/Trackjunction/Trackjunction.png", link: "#" },
-    { title: "Al Fabiha", img: "/portfolio/alfabiha/alf1.png", link: "#" },
-];
+import { PORTFOLIOS } from "@/data/portfolio";
 
 export default function WorksShowcase() {
     const targetRef = useRef<HTMLDivElement>(null);
@@ -44,7 +36,7 @@ export default function WorksShowcase() {
 
     return (
         <>
-            {/* Desktop: sticky horizontal scroll — Our projects + portfolio cards */}
+            {/* Desktop: sticky horizontal scroll, Our projects + portfolio cards */}
             <section
                 ref={targetRef}
                 className="relative w-full h-[300vh] bg-[#0a0a0a] hidden md:block"
@@ -84,9 +76,9 @@ export default function WorksShowcase() {
                         >
                             <div ref={carouselRef} className="flex gap-5 md:gap-6">
                                 {PORTFOLIOS.map((item) => (
-                                    <a
+                                    <Link
                                         key={item.img}
-                                        href={item.link}
+                                        to={item.link}
                                         className="relative flex flex-col w-[480px] lg:w-[640px] h-[270px] lg:h-[360px] shrink-0 overflow-hidden rounded-xl lg:rounded-2xl border border-[#222] bg-[#0a0a0a] shadow-[0_0_0_1px_rgba(255,255,255,0.03)] hover:border-[#36f2b0]/30 hover:shadow-[0_0_40px_-8px_rgba(54,242,176,0.15)] transition-all duration-300 ease-out group"
                                     >
                                         <div className="relative flex-1 min-h-0">
@@ -108,7 +100,7 @@ export default function WorksShowcase() {
                                                 →
                                             </span>
                                         </div>
-                                    </a>
+                                    </Link>
                                 ))}
                             </div>
                         </motion.div>
@@ -132,9 +124,9 @@ export default function WorksShowcase() {
                 </div>
                 <div className="flex flex-col gap-5">
                     {PORTFOLIOS.map((item) => (
-                        <a
+                        <Link
                             key={item.img}
-                            href={item.link}
+                            to={item.link}
                             className="block w-full rounded-xl overflow-hidden border border-[#222] bg-[#0a0a0a] active:border-[#36f2b0]/30"
                         >
                             <div className="aspect-[16/9] relative">
@@ -153,7 +145,7 @@ export default function WorksShowcase() {
                                     <span className="text-[#36f2b0] text-lg">→</span>
                                 </div>
                             </div>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </section>

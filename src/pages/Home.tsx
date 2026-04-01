@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Hero from "@/components/Hero";
 import Introduction from "@/components/Introduction";
+import VideoStripeSection from "@/components/VideoStripeSection";
 import WorksShowcase from "@/components/WorksShowcase";
 import LogoLoop from "@/components/LogoLoop";
 import Testimonial from "@/components/Testimonial";
@@ -30,6 +31,7 @@ export default function Home() {
     <main className="min-h-screen bg-background text-foreground">
       <Hero />
       <Introduction />
+      <VideoStripeSection />
       <section id="work" className="scroll-mt-20">
         <WorksShowcase />
       </section>
