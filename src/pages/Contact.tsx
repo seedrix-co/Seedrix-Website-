@@ -19,9 +19,16 @@ export default function Contact() {
     const form = e.currentTarget;
     const formData = new FormData(form);
     try {
-      const res = await fetch("/send-inquiry.php", {
+      const res = await fetch("/api/send-inquiry", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          company: formData.get("company"),
+          service: formData.get("service"),
+          message: formData.get("message"),
+        }),
       });
       let data: { success?: boolean; error?: string } = {};
       try {

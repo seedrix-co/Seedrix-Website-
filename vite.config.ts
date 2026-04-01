@@ -7,6 +7,12 @@ export default defineConfig({
   server: {
     host: true, // listen on 0.0.0.0 so you can open via IP and from other devices on the network
     port: 5173,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
   resolve: {
     alias: {

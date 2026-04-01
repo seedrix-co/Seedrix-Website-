@@ -1,0 +1,4 @@
+services:
+  api:
+    environment:
+      BREVO_API_KEY: ${BREVO_API_KEY}

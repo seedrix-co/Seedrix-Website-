@@ -1,0 +1,16 @@
+services:
+  web:
+    build: .
+    image: chamixth/seedrix-website:latest
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+
+  api:
+    build: ./server
+    env_file:
+      - .env
+    restart: unless-stopped
