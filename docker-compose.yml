@@ -1,6 +1,5 @@
 services:
   web:
-    build: .
     image: chamixth/seedrix-website:latest
     ports:
       - "8080:80"
@@ -8,9 +7,8 @@ services:
       - api
     restart: unless-stopped
 
-
   api:
-    build: ./server
+    image: chamixth/seedrix-api:latest
     env_file:
       - .env
     restart: unless-stopped
