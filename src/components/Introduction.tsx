@@ -48,7 +48,7 @@ export default function Introduction() {
                     variants={scrollRevealContainer}
                     className="flex flex-col items-center justify-center text-center"
                 >
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-sans font-light text-foreground leading-tight md:leading-snug max-w-5xl flex flex-wrap justify-center gap-x-[0.25em] gap-y-0">
+                    <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-sans font-light text-foreground leading-tight md:leading-snug max-w-5xl flex flex-wrap justify-center gap-x-[0.25em] gap-y-0">
                         {TAGLINE_WORDS.map((word, i) => (
                             <motion.span
                                 key={`${word}-${i}`}
@@ -70,7 +70,7 @@ export default function Introduction() {
                         {INTRO_IMAGES.map((img, index) => (
                             <div
                                 key={img.src}
-                                className="w-full h-[30vh] min-h-[140px] md:h-auto md:min-h-0 md:flex-1 md:min-w-0 relative md:aspect-[4/3] overflow-hidden bg-background"
+                                className="w-full h-[28vh] min-h-[160px] md:h-auto md:min-h-0 md:flex-1 md:min-w-0 relative md:aspect-[4/3] overflow-hidden bg-background"
                             >
                                 <motion.div
                                     className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none px-4"
@@ -88,7 +88,7 @@ export default function Introduction() {
                                         }}
                                         aria-hidden
                                     />
-                                    <span className="relative z-[1] text-center text-3xl md:text-4xl lg:text-5xl font-sans font-medium uppercase tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.9)]">
+                                    <span className="relative z-[1] text-center text-xl sm:text-2xl md:text-4xl lg:text-5xl font-sans font-medium uppercase tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.9)]">
                                         {img.label}
                                     </span>
                                 </motion.div>

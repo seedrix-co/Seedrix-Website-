@@ -45,7 +45,7 @@ export default function About() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Hero: dark background, no LaserFlow (home only) */}
-      <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-[var(--spacing-section)] overflow-hidden bg-black">
+      <section className="relative min-h-screen flex flex-col justify-center pt-24 sm:pt-32 pb-[var(--spacing-section)] overflow-hidden bg-black">
         <div className="container mx-auto px-6 max-w-[1400px] z-10 relative">
           <motion.div
             variants={staggerContainer}
@@ -68,7 +68,7 @@ export default function About() {
 
             <motion.h1
               variants={fadeUpVariant}
-              className="text-6xl md:text-8xl lg:text-[120px] xl:text-[140px] font-display uppercase leading-none tracking-normal mb-6 text-white"
+              className="text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[140px] font-display uppercase leading-none tracking-normal mb-6 text-white"
             >
               Built to <br className="hidden md:block" />
               <span className="text-primary">Deliver</span>
@@ -76,7 +76,7 @@ export default function About() {
 
             <motion.p
               variants={fadeUpVariant}
-              className="text-2xl md:text-3xl lg:text-4xl font-sans font-light text-foreground tracking-tight mb-8"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-sans font-light text-foreground tracking-tight mb-8"
             >
               Clarity, Structure, and Scale
             </motion.p>
@@ -101,7 +101,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportReveal}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl lg:text-[7vw] leading-[1.1] font-sans uppercase tracking-tight flex flex-wrap gap-x-4 lg:gap-x-6 max-w-[85%]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[7vw] leading-[1.1] font-sans uppercase tracking-tight flex flex-wrap gap-x-2 sm:gap-x-4 lg:gap-x-6 max-w-full md:max-w-[85%]"
             >
               <span>OUR</span> <span className="text-primary">STORY</span>
             </motion.h2>
@@ -155,7 +155,7 @@ export default function About() {
             variants={processReveal}
             className="text-center mb-20"
           >
-            <h2 className="text-6xl md:text-8xl font-display uppercase tracking-tight leading-none">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display uppercase tracking-tight leading-none">
               Vision & <br />
               <span className="text-primary">Mission</span>
             </h2>
@@ -221,7 +221,7 @@ export default function About() {
             variants={processReveal}
             className="text-center mb-20"
           >
-            <h2 className="text-6xl md:text-8xl font-display uppercase tracking-tight leading-none">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display uppercase tracking-tight leading-none">
               Our <br />
               <span className="text-primary">Values</span>
             </h2>
@@ -254,7 +254,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportReveal}
-              className="text-4xl md:text-5xl lg:text-[7vw] leading-[1.1] font-sans uppercase tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[7vw] leading-[1.1] font-sans uppercase tracking-tight"
             >
               <span className="text-primary">Team</span>
             </motion.h2>
@@ -320,7 +320,7 @@ export default function About() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={viewportReveal}
-            className="text-4xl md:text-5xl lg:text-6xl font-display uppercase tracking-tight text-white"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display uppercase tracking-tight text-white"
           >
             Dubai, <span className="text-primary">UAE</span>
           </motion.p>

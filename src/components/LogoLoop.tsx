@@ -42,7 +42,7 @@ export default function LogoLoop() {
     return (
         <section className="relative z-20 py-[var(--spacing-section)] overflow-hidden bg-card border-y border-border/50">
             <div className="flex flex-col md:flex-row md:items-center gap-0 overflow-hidden">
-                <h2 className="shrink-0 text-5xl md:text-7xl lg:text-8xl font-display uppercase tracking-tight leading-none pr-0 pb-6 md:pb-0 md:pr-8">
+                <h2 className="shrink-0 text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-display uppercase tracking-tight leading-none pr-0 pb-4 md:pb-0 md:pr-8">
                     <span className="font-light text-[#CACACA]">OUR </span>
                     <span className="font-bold text-[#36f2b0]">CLIENTS</span>
                 </h2>
@@ -50,13 +50,13 @@ export default function LogoLoop() {
                     ref={scrollRef}
                     className="flex-1 min-w-0 overflow-hidden -mx-4 md:mx-0"
                     style={{
-                        maskImage: "linear-gradient(to right, transparent 0%, black 120px)",
-                        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 120px)",
+                        maskImage: "linear-gradient(to right, transparent 0%, black 10vw)",
+                        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 10vw)",
                     }}
                 >
                     <div
                         data-loop-wrapper
-                        className="flex w-max gap-16 items-center will-change-transform"
+                        className="flex w-max gap-8 md:gap-16 items-center will-change-transform"
                         style={{ width: "max-content" }}
                     >
                         {[...LOGOS, ...LOGOS].map((logo, i) => {

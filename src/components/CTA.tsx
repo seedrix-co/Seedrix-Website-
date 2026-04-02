@@ -26,42 +26,31 @@ export default function CTA() {
         setStatus("sending");
         const form = e.currentTarget;
         const formData = new FormData(form);
-        // #region agent log
-        const formKeys = Array.from(formData.keys());
-        fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:handleSubmit',message:'form submit start',data:{formKeyCount:formKeys.length,formKeys},hypothesisId:'B',timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
         try {
-            const res = await fetch("/send-inquiry.php", {
+            const res = await fetch("/api/send-inquiry", {
                 method: "POST",
-                body: formData,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: formData.get("name"),
+                    email: formData.get("email"),
+                    company: formData.get("company"),
+                    service: formData.get("service"),
+                    message: formData.get("message"),
+                }),
             });
-            // #region agent log
-            fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:after fetch',message:'fetch result',data:{status:res.status,ok:res.ok,contentType:res.headers.get('content-type')},hypothesisId:'A',timestamp:Date.now()})}).catch(()=>{});
-            // #endregion
             let data: { success?: boolean; error?: string } = {};
             try {
                 data = await res.json();
-            } catch (_) {
-                // #region agent log
-                fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:json parse',message:'response not valid JSON',data:{status:res.status},hypothesisId:'C',timestamp:Date.now()})}).catch(()=>{});
-                // #endregion
+            } catch {
+                /* non-JSON response */
             }
-            // #region agent log
-            fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:parsed data',message:'response data',data:{success:data.success,error:data.error},hypothesisId:'C',timestamp:Date.now()})}).catch(()=>{});
-            // #endregion
             if (res.ok && data.success) {
                 setStatus("sent");
                 form.reset();
-                // #region agent log
-                fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:success path',message:'set sent and reset form',data:{},hypothesisId:'E',timestamp:Date.now()})}).catch(()=>{});
-                // #endregion
             } else {
                 setStatus("error");
             }
-        } catch (err) {
-            // #region agent log
-            fetch('http://127.0.0.1:7783/ingest/73b0af91-a0c0-442e-8599-7bc60cf1895e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'1e26ad'},body:JSON.stringify({sessionId:'1e26ad',location:'CTA.tsx:catch',message:'fetch or parse threw',data:{errName:err instanceof Error ? err.name : '',errMessage:err instanceof Error ? err.message : String(err)},hypothesisId:'D',timestamp:Date.now()})}).catch(()=>{});
-            // #endregion
+        } catch {
             setStatus("error");
         }
     }
@@ -81,7 +70,7 @@ export default function CTA() {
                     scale: 1.12,
                 }}
             />
-            <div className="container relative z-10 w-full max-w-none pl-6 lg:pl-10 pr-6 lg:pr-4 py-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-8">
+            <div className="container relative z-10 w-full max-w-none px-4 sm:px-6 lg:px-10 py-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-8">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -89,8 +78,8 @@ export default function CTA() {
                     variants={fadeUpVariant}
                     className="flex flex-col items-start text-left flex-shrink-0 lg:max-w-md"
                 >
-                    <span className="text-xs font-bold uppercase tracking-widest mb-6">Hit us up</span>
-                    <h2 className="text-6xl md:text-9xl font-display uppercase tracking-tighter leading-none mb-10">
+                    <span className="text-xs font-bold uppercase tracking-widest mb-4 sm:mb-6">Hit us up</span>
+                    <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display uppercase tracking-tighter leading-none mb-8 sm:mb-10">
                         Let's <br /> Work Together
                     </h2>
                 </motion.div>
@@ -104,9 +93,9 @@ export default function CTA() {
                 >
                     <form
                         onSubmit={handleSubmit}
-                        className="p-6 md:p-8 space-y-5"
+                        className="p-4 sm:p-6 md:p-8 space-y-5"
                     >
-                        <div className="grid gap-5 sm:grid-cols-2">
+                        <div className="grid gap-4 sm:grid-cols-2">
                             <label className="block">
                                 <span className="block text-sm font-medium text-white/90 mb-1.5">
                                     Name <span className="text-primary">*</span>
@@ -115,7 +104,7 @@ export default function CTA() {
                                     type="text"
                                     name="name"
                                     required
-                                    className="w-full rounded-lg border border-transparent bg-transparent px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                                     placeholder="Your name"
                                 />
                             </label>
@@ -127,7 +116,7 @@ export default function CTA() {
                                     type="email"
                                     name="email"
                                     required
-                                    className="w-full rounded-lg border border-transparent bg-transparent px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                                     placeholder="you@company.com"
                                 />
                             </label>
@@ -137,7 +126,7 @@ export default function CTA() {
                             <input
                                 type="text"
                                 name="company"
-                                className="w-full rounded-lg border border-transparent bg-transparent px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                                 placeholder="Your company"
                             />
                         </label>
@@ -148,7 +137,7 @@ export default function CTA() {
                             <select
                                 name="service"
                                 required
-                                className="w-full rounded-lg border border-transparent bg-transparent px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none cursor-pointer bg-no-repeat bg-[length:1rem] bg-[right_0.75rem_center] pr-10"
+                                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none cursor-pointer bg-no-repeat bg-[length:1rem] bg-[right_0.75rem_center] pr-10"
                                 style={{
                                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(255,255,255,0.7)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
                                 }}
@@ -169,12 +158,12 @@ export default function CTA() {
                                 name="message"
                                 required
                                 rows={4}
-                                className="w-full rounded-lg border border-transparent bg-transparent px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-y min-h-[100px]"
+                                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-y min-h-[100px]"
                                 placeholder="Tell us about your project..."
                             />
                         </label>
                         {status === "sent" && (
-                            <p className="text-primary text-sm font-medium">Thanks! We’ll be in touch soon.</p>
+                            <p className="text-primary text-sm font-medium">Thanks! We'll be in touch soon.</p>
                         )}
                         {status === "error" && (
                             <p className="text-red-300 text-sm">Something went wrong. Please try again.</p>
@@ -185,7 +174,7 @@ export default function CTA() {
                                 variant="default"
                                 size="lg"
                                 disabled={status === "sending"}
-                                className="bg-white text-black hover:bg-white/90"
+                                className="w-full sm:w-auto bg-white text-black hover:bg-white/90"
                             >
                                 {status === "sending" ? "Sending…" : "Send inquiry"}
                             </Button>

@@ -115,7 +115,7 @@ export default function ProjectCaseStudy() {
           className="relative mt-12 w-full md:mt-16"
         >
           <div className="relative mx-auto max-w-[1400px] px-0 md:px-6">
-            <div className="relative aspect-[21/9] min-h-[200px] w-full overflow-hidden md:rounded-2xl md:border md:border-[#222]">
+            <div className="relative aspect-[16/9] sm:aspect-[21/9] min-h-[200px] w-full overflow-hidden md:rounded-2xl md:border md:border-[#222]">
               <img
                 src={study.heroImage}
                 alt={study.title}

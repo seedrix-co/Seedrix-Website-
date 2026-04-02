@@ -34,7 +34,7 @@ export default function FAQ() {
                     initial="hidden" whileInView="visible" viewport={viewportReveal} variants={fadeUpVariant}
                     className="mb-16 text-center"
                 >
-                    <h2 className="text-4xl md:text-6xl font-display uppercase tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display uppercase tracking-tight">
                         Frequently Asked <br /><span className="text-primary">Questions</span>
                     </h2>
                 </motion.div>
@@ -45,7 +45,7 @@ export default function FAQ() {
                     <Accordion type="single" collapsible className="w-full">
                         {faqs.map((faq, i) => (
                             <AccordionItem key={i} value={`item-${i}`}>
-                                <AccordionTrigger className="text-xl md:text-2xl font-display tracking-wider text-left">
+                                <AccordionTrigger className="text-base sm:text-lg md:text-xl font-display tracking-wider text-left py-5">
                                     {faq.q}
                                 </AccordionTrigger>
                                 <AccordionContent className="text-base md:text-lg leading-relaxed max-w-2xl">

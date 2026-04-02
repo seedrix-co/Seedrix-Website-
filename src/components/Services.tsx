@@ -102,7 +102,7 @@ function ServiceRow({
 
                             <div className="flex flex-col justify-between py-2 lg:py-4 w-full h-full lg:min-h-[380px]">
                                 <div className="flex flex-col gap-4 lg:gap-6">
-                                    <h4 className="text-3xl md:text-4xl lg:text-[40px] leading-tight text-foreground font-sans">{svc.title}</h4>
+                                    <h4 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight text-foreground font-sans">{svc.title}</h4>
                                     <p className="text-muted text-lg md:text-xl lg:text-2xl leading-relaxed lg:max-w-xl font-light">
                                         {svc.desc}
                                     </p>
@@ -156,7 +156,7 @@ export default function Services() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={viewportReveal}
                         transition={{ duration: 0.6 }}
-                        className="text-4xl md:text-5xl lg:text-[7vw] leading-[1.1] font-sans uppercase tracking-tight flex flex-wrap gap-x-4 lg:gap-x-6 max-w-[75%]"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-[7vw] leading-[1.1] font-sans uppercase tracking-tight flex flex-wrap gap-x-2 sm:gap-x-4 lg:gap-x-6 max-w-full md:max-w-[75%]"
                     >
                         <span>HOW</span> <span>WE</span> <span>CAN</span> <span>HELP</span>
                     </motion.h2>

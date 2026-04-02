@@ -32,7 +32,7 @@ export default function Works() {
 
             <motion.h1
               variants={fadeUpVariant}
-              className="mb-6 font-display text-5xl uppercase leading-[1.05] tracking-normal text-white md:text-7xl lg:text-8xl xl:text-[120px]"
+              className="mb-6 font-display text-4xl sm:text-5xl uppercase leading-[1.05] tracking-normal text-white md:text-7xl lg:text-8xl xl:text-[120px]"
             >
               Our <br className="md:hidden" />
               <span className="text-primary">Work</span>

@@ -75,7 +75,7 @@ export default function Hero() {
 
             <div className="container mx-auto px-6 max-w-[1400px] z-10 relative">
                 <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-display leading-none tracking-normal mb-8 whitespace-nowrap">
+                    <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-display leading-none tracking-normal mb-8 sm:whitespace-nowrap">
                         <motion.span
                             className="inline-block mr-[0.15em] md:mr-[0.2em]"
                             {...wordAnimation(0.5)}
